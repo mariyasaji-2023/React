@@ -1,22 +1,19 @@
-import React from 'react'
-import About from './Container/About'
-import Profile from './Container/Profile'
-import { useState } from 'react'
-import {Route,Routes, useNavigate} from 'react-router-dom'
+import React, { useState } from 'react'
 
 function App() {
-  const [state, setState] = useState('')
-  const navigate = useNavigate();
-  return (
-    <div className='App'>
-     <button onClick={()=>navigate('/about')}>About</button>
-<button onClick={()=>navigate('/profile')}>Profile</button>
-<Routes>
-        <Route element={<About/>} path='/about'/>
-        <Route element={<Profile/>} path='/profile'/>
-</Routes>'
-    </div>
-  )
+    const [dark, setDark] = useState(false)
+    const theme = {
+        backgroundColor :dark? '#333' : '#FFF',
+        color : dark? '#FFF' : '#333'
+    }
+    return (
+        <div style={theme}>
+            <h1>Hello World</h1>
+            <button onClick={()=>setDark(!dark)}>Toggle</button>
+
+        </div>
+    )
 }
 
 export default App
+
