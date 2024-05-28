@@ -1,16 +1,16 @@
-import React,{useState,useCallback} from 'react'
+import React ,{useMemo,useState}from 'react'
 
 function App() {
   const [count,setCount] = useState(0)
-  const handleclick =useCallback(()=>{
-    console.log('button clicked');
-  },[])
-
+  const computedValue =useMemo(()=>{
+    console.log("computing");
+    return count*2
+  },[count])
   return (
     <div>
-      <p>count:{count}</p>
-      <button onClick={()=>setCount(count+1)}>Click Me</button>
-      <button onClick={handleclick}>log</button>
+      <h1>count:{count}</h1>
+      <h2>computedValue:{computedValue}</h2>
+      <button onClick={()=>setCount(count+1)}>increment</button>
     </div>
   )
 }
