@@ -1,18 +1,18 @@
-import React ,{useMemo,useState}from 'react'
+import React ,{useState}from 'react'
 
 function App() {
-  const [count,setCount] = useState(0)
-  const computedValue =useMemo(()=>{
-    console.log("computing");
-    return count*2
-  },[count])
+  const [color,setColor] = useState(0)
+  const changecolor = () =>{
+    const newColor = color==='white'? 'lightblue' : 'white'
+   setColor(newColor)
+  }
   return (
-    <div>
-      <h1>count:{count}</h1>
-      <h2>computedValue:{computedValue}</h2>
-      <button onClick={()=>setCount(count+1)}>increment</button>
+    <div style={{backgroundColor:color}}>
+      <button onClick={changecolor}>Click</button>
+      
     </div>
   )
 }
 
 export default App
+
