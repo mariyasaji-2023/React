@@ -1,39 +1,19 @@
-// import React, { useRef } from 'react';
-// function App() {
-//   const divRef = useRef(null);
-//   const changeColor = () => {
-//     const currentColor = divRef.current.style.backgroundColor;
-//     const newColor = currentColor === 'white' ? 'lightblue' : 'white';
-//     divRef.current.style.backgroundColor = newColor;
-//   };
-//   return (
-//     <div>
-//       <div ref={divRef}>
-//         Color Box
-//       </div>
-//       <button onClick={changeColor}>Change Color</button>
-//     </div>
-//   );
-// }
+import React,{useState} from 'react'
+import Child from './child'
 
-// export default App
-
-import React,{useRef} from 'react'
 
 function App() {
-  const divRef = useRef(null)
-  const changeColor =()=>{
-    const currentColor = divRef.current.style.backgroundColor;
-    const newColor = currentColor === 'white'? 'lightblue':'white' ;
-    divRef.current.style.backgroundColor = newColor
+  const [count,setCount] = useState(0)
+  const increment =()=>{
+    setCount(count+1)
   }
+
   return (
-    <div ref={divRef}>
-      <button onClick={changeColor}>Click</button>
+    <div>
+      <h1>Count:{count}</h1>
+      <Child count={count} increment={increment}/>
     </div>
   )
 }
 
 export default App
-
-
