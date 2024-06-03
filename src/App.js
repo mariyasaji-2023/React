@@ -1,17 +1,18 @@
-import React,{useState} from 'react'
-import Child from './child'
 
+
+
+import React ,{useState}from 'react'
+import Child from './Child'
 
 function App() {
-  const [count,setCount] = useState(0)
-  const increment =()=>{
-    setCount(count+1)
+  const [dataFromChild,setDataFromChild] = useState('')
+  const receiveDataFromChild = (data) =>{
+    setDataFromChild(data)
   }
-
   return (
     <div>
-      <h1>Count:{count}</h1>
-      <Child count={count} increment={increment}/>
+      <p>data from child:{dataFromChild}</p>
+      <Child sendDataToParent={receiveDataFromChild}/>
     </div>
   )
 }
