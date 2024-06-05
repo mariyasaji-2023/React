@@ -1,20 +1,24 @@
+import React, { useState, useCallback } from 'react';
 
-
-
-import React ,{useState}from 'react'
-import Child from './Child'
+const ChildComponent = React.memo(({ onClick }) => {
+  console.log('Child component rendered');
+  return <button onClick={onClick}>Log</button>;
+});
 
 function App() {
-  const [dataFromChild,setDataFromChild] = useState('')
-  const receiveDataFromChild = (data) =>{
-    setDataFromChild(data)
-  }
+  const [count, setCount] = useState(0);
+
+  const handleClick = useCallback(() => {
+    console.log('button clicked');
+  }, []);
+
   return (
     <div>
-      <p>data from child:{dataFromChild}</p>
-      <Child sendDataToParent={receiveDataFromChild}/>
+      <p>count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Click Me</button>
+      <ChildComponent onClick={handleClick} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
