@@ -1,24 +1,26 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 
-const ChildComponent = React.memo(({ onClick }) => {
-  console.log('Child component rendered');
-  return <button onClick={onClick}>Log</button>;
-});
+function ControlledComponent() {
+  const [inputValue, setInputValue] = useState('');
 
-function App() {
-  const [count, setCount] = useState(0);
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
 
-  const handleClick = useCallback(() => {
-    console.log('button clicked');
-  }, []);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert('Input Value: ' + inputValue);
+  };
 
   return (
-    <div>
-      <p>count: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Click Me</button>
-      <ChildComponent onClick={handleClick} />
-    </div>
+    <form onSubmit={handleSubmit}>
+      <label>
+        Input:
+        <input type="text" value={inputValue} onChange={handleChange} />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
   );
 }
 
-export default App;
+export default ControlledComponent;
