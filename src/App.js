@@ -1,22 +1,14 @@
-import React, { useRef } from 'react'
+import React ,{useState}from 'react'
+import Child from './Child'
 
 function App() {
-    const inputRef = useRef(null)
-    const handleclick = (event) => {
-        event.preventDefault();
-        alert('inputvalue : ' + inputRef.current.value)
-    }
-    return (
-        <div>
-            <form onSubmit={handleclick}>
-                <label>
-                    input:
-                    <input type='text' ref={inputRef} />
-                    <button type='submit'>Submit</button>
-                </label>
-            </form>
-        </div>
-    )
+  const [state,setState] = useState(false)
+  return (
+    <div>
+      <button onClick={()=>setState(!state)}>show/hide</button>
+      {state?<Child/>:null}
+    </div>
+  )
 }
 
 export default App
