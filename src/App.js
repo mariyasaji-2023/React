@@ -1,14 +1,18 @@
-import React ,{useState}from 'react'
-import Child from './Child'
+// App.js
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-function App() {
-  const [state,setState] = useState(false)
+const App = () => {
+  const count = useSelector(state => state.count);
+  const dispatch = useDispatch();
+
   return (
     <div>
-      <button onClick={()=>setState(!state)}>show/hide</button>
-      {state?<Child/>:null}
+      <h1>Counter: {count}</h1>
+      <button onClick={() => dispatch({ type: 'INCREMENT' })}>Increment</button>
+      <button onClick={() => dispatch({ type: 'DECREMENT' })}>Decrement</button>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
