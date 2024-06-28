@@ -1,18 +1,27 @@
-// App.js
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 
-const App = () => {
-  const count = useSelector(state => state.count);
-  const dispatch = useDispatch();
+function App() {
+  const [count, setCount] = useState(1);
+
+  const increment = () => {
+    setCount(prevCount => prevCount + 1);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      increment();
+    }, 1000); // Auto increment every second
+
+    // Clean up the interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div>
       <h1>Counter: {count}</h1>
-      <button onClick={() => dispatch({ type: 'INCREMENT' })}>Increment</button>
-      <button onClick={() => dispatch({ type: 'DECREMENT' })}>Decrement</button>
+      <button onClick={increment}>ADD</button>
     </div>
   );
-};
+}
 
 export default App;
